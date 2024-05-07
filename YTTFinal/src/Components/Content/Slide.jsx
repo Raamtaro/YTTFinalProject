@@ -1,9 +1,9 @@
 import React from 'react'
-import Canvas from './Scene.jsx'
+import Scene from './ThreeComponents/Scene.jsx'
 
 function Slide() {
   return (
-    <div>Slide</div>
+    <Scene></Scene>
   )
 }
 

@@ -1,11 +1,14 @@
 import './App.css'
-import Scene from './Components/Content/Scene.jsx'
+import Slide from './Components/Content/Slide.jsx'
+
 
 function App() {
   
 
   return (
-    <Scene></Scene>
+    <>
+    <Slide />
+    </>
   )
 }
 

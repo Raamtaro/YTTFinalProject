@@ -1,5 +1,6 @@
 import './App.css'
-import Slide from './Components/Content/Slide.jsx'
+import Slider from './Components/Content/Slider.jsx'
+import SectionNav from './Components/Navigation/SectionNav.jsx'
 
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
 
   return (
     <>
-    <Slide />
+    <SectionNav />
+    <Slider />
     </>
   )
 }

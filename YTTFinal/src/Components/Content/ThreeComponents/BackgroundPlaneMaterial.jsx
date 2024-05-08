@@ -13,7 +13,8 @@ const BackgroundPlaneShaderMaterial = forwardRef((props, ref) => {
         fragmentShader: helloFragment,
         uniforms: {
             uTime: { value: 0 },
-            uResolution: { value: new THREE.Vector2() }
+            uResolution: { value: new THREE.Vector2() },
+            uMouse: { value: new THREE.Vector2()}
         }
     }), []);
 

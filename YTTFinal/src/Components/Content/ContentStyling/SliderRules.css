@@ -1,0 +1,31 @@
+.slider {
+    position: relative; /* Changed to relative to ensure child absolute positioning is relative to this */
+    width: 100%; /* Ensure it covers the horizontal space */
+    height: 100vh; /* Adjust based on your layout needs */
+}
+
+.slider__nav {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.slider-bullet {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.slider-bullet__text {
+    color: #fff;
+    font-size: 0.65rem;
+    margin-right: 1rem;
+}
+
+.slider-bullet__line {
+    background-color: #fff;
+    height: 1px;
+    width: 1rem;
+}

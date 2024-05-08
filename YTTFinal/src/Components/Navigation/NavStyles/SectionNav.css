@@ -1,0 +1,48 @@
+
+.nav {
+  position: absolute;
+  top: 2rem;
+  left: 1rem;
+  z-index: 10;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  height: 1rem;
+}
+
+.nav li {
+  display: block;
+  margin: 0 1rem;
+  padding: 0;
+}
+
+.nav span {
+  position: relative;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: calc(0.5rem + 0.35vw);
+  font-family: 'helvetica neue', helvetica, sans-serif;
+}
+
+.nav span:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.25);
+  transition: transform 0.75s ease;
+  transform-origin: right;
+  transform: scaleX(0);
+}
+
+/* Add hover effect to scale the line on hover */
+.nav span:hover:before,
+.nav span:focus:before {
+  transform: scaleX(1);
+  transform-origin: left;
+}

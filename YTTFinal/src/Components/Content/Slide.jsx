@@ -3,7 +3,9 @@ import Scene from './ThreeComponents/Scene.jsx'
 
 function Slide() {
   return (
-    <Scene></Scene>
+    <Scene>
+      
+    </Scene>
   )
 }
 

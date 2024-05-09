@@ -1,28 +1,15 @@
 import React from 'react'
 
-const SlideNav = () => {
+const SlideNav = ({bullets}) => {
+  const bulletElements = Array.from( { length: bullets}, (_, index) => (
+    <div className="slider-bullet" key={index}>
+      <span className="slider-bullet__text">{(index + 1).toString().padStart(2, '0')}</span>
+      <span className="slider-bullet__line"></span>
+    </div>
+  ))
   return (
-    <nav className="slider__nav">
-    <div className="slider-bullet ">
-      <span className="slider-bullet__text">01</span>
-      <span className="slider-bullet__line"></span>
-    </div>
-    <div className="slider-bullet ">
-      <span className="slider-bullet__text">02</span>
-      <span className="slider-bullet__line"></span>
-    </div>
-    <div className="slider-bullet ">
-      <span className="slider-bullet__text">03</span>
-      <span className="slider-bullet__line"></span>
-    </div>
-    <div className="slider-bullet ">
-      <span className="slider-bullet__text">04</span>
-      <span className="slider-bullet__line"></span>
-    </div>
-    <div className="slider-bullet ">
-      <span className="slider-bullet__text">05</span>
-      <span className="slider-bullet__line"></span>
-    </div>
+  <nav className="slider__nav">
+    {bulletElements}
   </nav>
   )
 }

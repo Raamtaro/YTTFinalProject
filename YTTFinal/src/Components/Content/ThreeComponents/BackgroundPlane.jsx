@@ -19,7 +19,7 @@ import BackgroundPlaneShaderMaterial from './BackgroundPlaneMaterial.jsx';
             const x = event.clientX / window.innerWidth;
             const y = 1.0 - (event.clientY / window.innerHeight);
             materialRef.current.uniforms.uMouse.value.set(x, y);
-            console.log(x,y);
+            // console.log(x,y);
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -38,7 +38,7 @@ import BackgroundPlaneShaderMaterial from './BackgroundPlaneMaterial.jsx';
             <planeGeometry args={[viewport.width, viewport.height]} attach="geometry" />
             <BackgroundPlaneShaderMaterial ref={materialRef} />
 
-            
+            {/**Below is for debugging */}
             {/* <boxGeometry args={[1,1,1]} />
             <meshBasicMaterial color={"red"} /> */}
         </mesh>

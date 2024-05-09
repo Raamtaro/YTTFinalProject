@@ -1,5 +1,5 @@
 import React from 'react'
-// import Slide from './Slide.jsx'
+import { useSection } from '../../Contexts/SectionContext.jsx'
 import SlideNav from '../Navigation/SlideNav.jsx'
 import Home from '../Sections/Home.jsx'
 import Poses from '../Sections/Poses.jsx'
@@ -8,10 +8,27 @@ import './ContentStyling/SliderRules.css'
 //Overarching parent component which controls which slide(s) to load within each section
 
 const Slider = () => {
+  const {activeSection} = useSection()
+  const {bullets} = useSection()
+  
+
+  const renderSection = () => {
+    switch (activeSection) {
+      case 'Home':
+        return <Home />
+      case 'Poses':
+        return <Poses />
+      case 'Reflections':
+        return <Reflections />
+      default:
+        return null
+    }
+  }
+
   return (
     <div className = "Slider">
-      <Home />{/**Instead of directly returning a slide,  */}
-      <SlideNav />
+      {renderSection()}
+      <SlideNav bullets={bullets}/>
     </div>
   )
 }

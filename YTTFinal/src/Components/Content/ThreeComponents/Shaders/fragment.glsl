@@ -47,5 +47,5 @@ void main() {
     // // Margins
     // color *= step(0.2,fpos.y);
 
-    gl_FragColor = vec4(uMouse.x, uMouse.y, 0.0, 1.0);
+    gl_FragColor = vec4(uMouse.x * 0.75, uMouse.y * 0.76, 0.5 * (pow(pow(uMouse.x, 2.0) + pow(uMouse.y, 2.0), 0.5)), 1.0);
 }

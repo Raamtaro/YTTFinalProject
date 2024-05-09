@@ -29,3 +29,20 @@
     height: 1px;
     width: 1rem;
 }
+
+.slider__text {
+    position: absolute;
+    bottom: calc(2rem + 3vw);
+    left: calc(2rem + 3vw);
+    z-index: 10;
+    font-size: calc(1rem + 4vw);
+    text-transform: uppercase;
+    transform-origin: top;
+    line-height: 1.075;
+    color: #fff;
+    font-weight: 500;
+}
+
+.slider__text-line {
+    overflow: hidden;
+}

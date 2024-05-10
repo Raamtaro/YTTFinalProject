@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import { useSection } from '../../Contexts/SectionContext.jsx'
 import SlideNav from '../Navigation/SlideNav.jsx'
 import Home from '../Sections/Home.jsx'
 import Poses from '../Sections/Poses.jsx'
 import Reflections from '../Sections/Reflections.jsx'
 import './ContentStyling/SliderRules.css'
+import SlideScroller from '../Sections/SlideScroller.jsx'
+import gsap from 'gsap'
 //Overarching parent component which controls which slide(s) to load within each section
 
 const Slider = () => {
@@ -27,7 +29,9 @@ const Slider = () => {
 
   return (
     <div className = "Slider">
-      {renderSection()}
+      <SlideScroller>
+        {renderSection()}
+      </SlideScroller>
       <SlideNav bullets={bullets}/>
     </div>
   )

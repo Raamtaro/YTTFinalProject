@@ -1,15 +1,23 @@
 import React from 'react'
 import Slide from '../Content/Slide'
+import SlideScroller from './SlideScroller.jsx';
 
 const Reflections = () => {
-  
+  const slidesData = [
+    { text1: "Slide 1", text2: "Whoa" },
+    { text1: "Slide 2", text2: "Bro" },
+    { text1: "Slide 3", text2: "Slow" },
+    { text1: "Slide 4", text2: "Down" }
+
+  ];
+
   return (
-    <>
-      <Slide text1="Slide3" text2="Still Slide 3"/>
-      <Slide text1="Just Kidding, It's a different Section" text2="Still not slide 3"/>
-      <Slide text1="MOAR TESTING" text2="STILLL NOT THE NEXT SLIDE"/>
-      <Slide text1="LESS TESTING,JESTING " text2="Now this is slide 4"/>
-    </>
+
+    <SlideScroller>
+      {slidesData.map((slide, index) => (
+          <Slide key={index} text1={slide.text1} text2={slide.text2} />
+      ))}
+    </SlideScroller>
   )
 }
 

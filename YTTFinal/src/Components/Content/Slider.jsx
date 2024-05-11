@@ -29,9 +29,7 @@ const Slider = () => {
 
   return (
     <div className = "Slider">
-      <SlideScroller>
-        {renderSection()}
-      </SlideScroller>
+      {renderSection()}
       <SlideNav bullets={bullets}/>
     </div>
   )

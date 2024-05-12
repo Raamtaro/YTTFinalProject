@@ -16,7 +16,7 @@ const Home = () => {
       {slidesData.map((slide, index) => (
           <Slide key={index} text1={slide.text1} text2={slide.text2} />
       ))}
-    </SlideScroller>
+    </ SlideScroller>
   )
 }
 

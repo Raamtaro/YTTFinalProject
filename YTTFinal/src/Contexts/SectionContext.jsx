@@ -6,7 +6,8 @@ export const useSection = () => useContext(SectionContext);
 
 export const SectionProvider = ({ children }) => {
     const [activeSection, setActiveSection] = useState('Home');
-    const [bullets, setBullets] = useState(0)
+    const [bullets, setBullets] = useState(0);
+    // const [activeSectionIndex, setActiveSectionIndex] = useState(0);
 
     const sectionToBullets = {
         Home: 3,

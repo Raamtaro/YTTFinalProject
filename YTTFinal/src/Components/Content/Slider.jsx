@@ -5,13 +5,14 @@ import Home from '../Sections/Home.jsx'
 import Poses from '../Sections/Poses.jsx'
 import Reflections from '../Sections/Reflections.jsx'
 import './ContentStyling/SliderRules.css'
-import SlideScroller from '../Sections/SlideScroller.jsx'
-import gsap from 'gsap'
+
+
 //Overarching parent component which controls which slide(s) to load within each section
 
 const Slider = () => {
   const {activeSection} = useSection()
   const {bullets} = useSection()
+  const sliderRef = useRef(null)
   
 
   const renderSection = () => {
@@ -28,7 +29,7 @@ const Slider = () => {
   }
 
   return (
-    <div className = "Slider">
+    <div className = "Slider" ref={sliderRef}>
       {renderSection()}
       <SlideNav bullets={bullets}/>
     </div>

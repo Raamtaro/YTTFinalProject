@@ -5,6 +5,8 @@ import Home from '../Sections/Home.jsx'
 import Poses from '../Sections/Poses.jsx'
 import Reflections from '../Sections/Reflections.jsx'
 import './ContentStyling/SliderRules.css'
+import SlideScroller from '../Sections/SlideScroller.jsx'
+
 
 
 //Overarching parent component which controls which slide(s) to load within each section
@@ -30,7 +32,9 @@ const Slider = () => {
 
   return (
     <div className = "Slider" ref={sliderRef}>
-      {renderSection()}
+      <SlideScroller>
+        {renderSection()}
+      </SlideScroller>
       <SlideNav bullets={bullets}/>
     </div>
   )

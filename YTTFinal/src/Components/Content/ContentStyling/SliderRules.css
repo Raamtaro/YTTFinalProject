@@ -1,5 +1,5 @@
 .Slider {
-    position: fixed; /* Use fixed to overlay on top of all content */
+    position: fixed !important; /*Used to fix the overlay*/
     top: 0;
     left: 0;
     width: 100%;

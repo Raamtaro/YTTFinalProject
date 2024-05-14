@@ -1,5 +1,6 @@
 import React, {Children, createContext, useContext, useState, useEffect} from 'react'
 
+
 const SectionContext = createContext()
 
 export const useSection = () => useContext(SectionContext);
@@ -7,8 +8,9 @@ export const useSection = () => useContext(SectionContext);
 export const SectionProvider = ({ children }) => {
     const [activeSection, setActiveSection] = useState('Home');
     const [bullets, setBullets] = useState(0);
+    // const [textureList, setTextureList] = useState([])
     // const [activeSectionIndex, setActiveSectionIndex] = useState(0);
-
+    // console.log(textureList)
     const sectionToBullets = {
         Home: 3,
         Poses: 5,
@@ -18,6 +20,8 @@ export const SectionProvider = ({ children }) => {
     useEffect(() => {
         setBullets(sectionToBullets[activeSection])
     }, [activeSection])
+
+
 
     return (
         <SectionContext.Provider value={{activeSection, setActiveSection, bullets}}>

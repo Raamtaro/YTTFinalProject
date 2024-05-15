@@ -31,7 +31,13 @@ export const TextureProvider = ({children}) =>{
             const loadedTextures = {}
 
             Object.keys(paths).forEach((key) => {
-                loadedTextures[key] = paths[key].map((path) => loader.load(path))
+                loadedTextures[key] = paths[key].map((path) => {
+                    const texture = loader.load(path);
+                    texture.magFilter = texture.minFilter = THREE.NearestFilter;
+                    texture.encoding = THREE.sRGBEncoding;
+                    texture.needsUpdate = true;
+                    return texture
+                })
             })
             return loadedTextures
         };
@@ -39,4 +45,10 @@ export const TextureProvider = ({children}) =>{
         const loadedTextures = loadTextures(texturePaths);
         setTextures(loadedTextures);
     }, [])
+
+    return (
+        <TextureContext.Provider value={{ textures, loading, progress}}>
+            {children}
+        </TextureContext.Provider>
+    )
 }

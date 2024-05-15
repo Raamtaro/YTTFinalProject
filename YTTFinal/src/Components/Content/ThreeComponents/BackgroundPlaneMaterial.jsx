@@ -2,30 +2,11 @@ import React, { forwardRef, useMemo, useEffect } from 'react';
 import * as THREE from 'three';
 import helloFragment from './Shaders/fragment.glsl';
 import helloVertex from './Shaders/vertex.glsl';
-import { extend, useLoader } from '@react-three/fiber';
-import { useSection } from '../../../Contexts/SectionContext.jsx';
-import texturePaths from '../../../data/texturePaths.js';
-
-
-
-
-// console.log(helloFragment)
-// console.log(helloVertex)
+import { extend } from '@react-three/fiber';
 
 const BackgroundPlaneShaderMaterial = forwardRef((props, ref) => {
-    // const {activeSection} = useSection()
-    // const textures = useSectionTextures(activeSection)
-    // console.log(typeof(textures))
-    const texture = useLoader(THREE.TextureLoader, texturePaths.home[0])
-    
-    
+    const { texture } = props
 
-    useEffect(() => {
-        if (texture) {
-            texture.magFilter = texture.minFilter = THREE.LinearFilter
-            texture.needsUpdate = true
-        }
-    }, [texture])
     const shaderMaterial = useMemo(() => new THREE.ShaderMaterial({
         vertexShader: helloVertex,
         fragmentShader: helloFragment,
@@ -35,7 +16,7 @@ const BackgroundPlaneShaderMaterial = forwardRef((props, ref) => {
             uMouse: { value: new THREE.Vector2()},
             uTexture: {value: texture}
         }
-    }), []);
+    }), [texture]);
 
     return <primitive object={shaderMaterial} ref={ref} attach="material" {...props} />;
 });

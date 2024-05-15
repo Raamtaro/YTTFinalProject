@@ -7,10 +7,11 @@ import poseTexture2 from '../assets/textures/PresentationTextures/mainTexture2.j
 import poseTexture3 from '../assets/textures/PresentationTextures/mainTexture3.jpg'
 import poseTexture4 from '../assets/textures/PresentationTextures/mainTexture4.jpg'
 import poseTexture5 from '../assets/textures/PresentationTextures/mainTexture5.jpg'
+import poseTexture6 from '../assets/textures/PresentationTextures/mainTexture6.jpg'
 
 const texturePaths = {
     home: [homeTexture1, homeTexture2, homeTexture3],
-    poses: [poseTexture1, poseTexture2, poseTexture3, poseTexture4, poseTexture5],
+    poses: [poseTexture1, poseTexture2, poseTexture3, poseTexture4, poseTexture5, poseTexture6],
     reflections: []
 }
 

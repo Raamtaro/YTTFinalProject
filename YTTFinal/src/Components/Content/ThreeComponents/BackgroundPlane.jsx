@@ -28,6 +28,7 @@ const BackgroundPlane = () => {
         const gui = new GUI();
         gui.add(settings.current, 'grid', 2, 1000, 1).onFinishChange(()=> {
             createDataTexture()
+            console.log(dataTexture)
         }) //come back to add .onFinishChange(()=>{}) callback to createDataTexture()
         gui.add(settings.current, 'mouse', 0, 1, 0.01)
         gui.add(settings.current, 'strength', 0, 1, 0.01)

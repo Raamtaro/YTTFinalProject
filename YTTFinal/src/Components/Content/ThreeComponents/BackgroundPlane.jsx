@@ -23,7 +23,7 @@ const BackgroundPlane = () => {
     const mouse = useRef({x: 0, y: 0, prevX: 0, prevY: 0, vX: 0, vY: 0})
     const settings = useRef({
         grid: 35,
-        mouse: 0.25,
+        mouse: 0.15,
         strength: .15,
         relaxation: 0.9,
     })
@@ -56,8 +56,8 @@ const BackgroundPlane = () => {
         // const b = Math.floor(color.b * 255);
 
         for (let i = 0; i < size ; i++) {
-            let r = Math.random() 
-            let r1 = Math.random() 
+            let r = Math.random() * 255 - 125 
+            let r1 = Math.random() * 255 - 125
 
             const stride = i*4
 
@@ -92,7 +92,7 @@ const BackgroundPlane = () => {
         const width = settings.current.grid
         const height = settings.current.grid
 
-        for (let i = 0; i < data.length; i += 3) {
+        for (let i = 0; i < data.length; i += 4) {
             data[i] *= settings.current.relaxation;
             data[i + 1] *= settings.current.relaxation
         }
@@ -108,7 +108,7 @@ const BackgroundPlane = () => {
                 const maxDistSq = maxDist**2;
 
                 if (distance < maxDistSq) {
-                    let index = 3 * (i + width*j)
+                    let index = 4 * (i + width*j)
                     let power = maxDist / Math.sqrt(distance)
                     power = clamp(power, 0, 10)
                     data[index] += settings.current.strength * 100 * mouse.current.vX * power;
@@ -138,8 +138,8 @@ const BackgroundPlane = () => {
 
     useEffect(() => {
         const handleMouseMove = (event) => {
-            mouse.current.x = event.clientX / window.innerWidth;
-            mouse.current.y = 1.0 - (event.clientY / window.innerHeight)
+            mouse.current.x = event.clientX / window.innerWidth
+            mouse.current.y = event.clientY / window.innerHeight
             mouse.current.vX = mouse.current.x - mouse.current.prevX
             mouse.current.vY = mouse.current.y - mouse.current.prevY
             mouse.current.prevX = mouse.current.x

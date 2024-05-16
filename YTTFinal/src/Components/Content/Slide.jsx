@@ -22,10 +22,10 @@ function Slide({text1, text2, lines}) {
   )
 }
 
-Slide.defaultProps = {
-  text1: "Hey there",
-  text2: "How are you?",
-  lines: 2,
-}
+// Slide.defaultProps = {
+//   text1: "Hey there",
+//   text2: "How are you?",
+//   lines: 2,
+// }
 
 export default Slide

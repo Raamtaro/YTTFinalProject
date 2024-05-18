@@ -9,9 +9,11 @@ import SlideScroller from '../Sections/SlideScroller.jsx'
 
 
 
+
 //Overarching parent component which controls which slide(s) to load within each section
 
 const Slider = () => {
+  
   const {activeSection} = useSection()
   const {bullets} = useSection()
   const sliderRef = useRef(null)
@@ -31,12 +33,17 @@ const Slider = () => {
   }
 
   return (
-    <div className = "Slider" ref={sliderRef}>
-      <SlideScroller>
-        {renderSection()}
-      </SlideScroller>
-      <SlideNav bullets={bullets}/>
-    </div>
+
+        <div className = "Slider" ref={sliderRef}>
+          <SlideScroller>
+            {renderSection()}
+          </SlideScroller>
+          <SlideNav bullets={bullets}/>
+        </div> 
+        
+      
+    
+
   )
 }
 

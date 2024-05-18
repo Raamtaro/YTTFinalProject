@@ -2,11 +2,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import texturePaths from '../data/texturePaths';
 
-
 const TextureContext = createContext();
 
 export const useTextures = () => useContext(TextureContext)
-
 
 export const TextureProvider = ({children}) =>{
     const [textures, setTextures] = useState({});

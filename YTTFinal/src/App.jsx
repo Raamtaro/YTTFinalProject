@@ -11,9 +11,11 @@ function App() {
 
   return (
     <SectionProvider>
-      <TextureProvider><Scene /></TextureProvider>
-      <SectionNav />
-      <Slider />
+      <TextureProvider>
+        <Scene />
+        <SectionNav />
+        <Slider />
+      </TextureProvider>
     </SectionProvider>
   )
 }

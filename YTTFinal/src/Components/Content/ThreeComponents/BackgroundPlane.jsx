@@ -22,10 +22,10 @@ const BackgroundPlane = () => {
     //Settings and References
     const mouse = useRef({x: 0, y: 0, prevX: 0, prevY: 0, vX: 0, vY: 0})
     const settings = useRef({
-        grid: 35,
-        mouse: 0.15,
-        strength: .15,
-        relaxation: 0.9,
+        grid: 31,
+        mouse: 0.41,
+        strength: 0.01,
+        relaxation: 0.98,
     })
     //*********************** */
 

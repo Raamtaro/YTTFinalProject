@@ -6,24 +6,28 @@ import BackgroundPlaneShaderMaterial from './BackgroundPlaneMaterial.jsx'
 import { useTextures } from '../../../Contexts/TextureLoaderContext.jsx'
 import GUI from 'lil-gui'
 import clamp from '../../../utils/clamp.js'
+import { useSlide } from '../../../Contexts/SlideContext.jsx'
+import { useSection } from '../../../Contexts/SectionContext.jsx'
 
 
 
 const BackgroundPlane = () => {
+    const {activeSection} = useSection()
+    const { currentTexture, nextTexture, currentSlide } = useSlide()
     const { size, viewport } = useThree()
     const materialRef = useRef()
     const planeRef = useRef()
-    const { textures } = useTextures()
+    const { textures, loading } = useTextures()
     const [dataTexture, setDataTexture] = useState(null)
 
-    // const [texture, setTexture] = useState(textures.home[0]);
-    // const [nextTexture, setNextTexture] = useState(textures.home[1]); //This is set up to account for slide transitioning, which comes further down the line
-
-
-
     useEffect(()=> {
-        console.log(textures['home'])
+        console.log(textures['home'][0])
+        console.log(currentSlide)
+        console.log(textures[activeSection.toLowerCase()][0]) //THIS IS RETURNING THE EXPECTED TEXTURE
+        console.log(textures[activeSection.toLowerCase()][currentSlide]) //THIS IS RETURNING THE EXPECTED TEXTURE
+        console.log(currentTexture) //THIS IS RETURNING NULL, WHICH IS UNEXPECTED BASED ON HOW IT IS SET IN SlideContext.jsx
     }, [])
+
 
     //Settings and References
     const mouse = useRef({x: 0, y: 0, prevX: 0, prevY: 0, vX: 0, vY: 0})
@@ -79,14 +83,14 @@ const BackgroundPlane = () => {
         // texture.generateMipmaps = true;
         texture.needsUpdate = true
 
-        console.log('Created DataTexture:', texture)
+        // console.log('Created DataTexture:', texture)
 
         setDataTexture(texture)
         if (materialRef) {
             
             materialRef.current.uniforms.uDataTexture.value = texture;
             materialRef.current.uniforms.uDataTexture.value.needsUpdate = true;
-            console.log("Assigned DataTexture to uniform:", texture)
+            // console.log("Assigned DataTexture to uniform:", texture)
         }
         
     }
@@ -158,10 +162,10 @@ const BackgroundPlane = () => {
 
 
 
-    useEffect(()=> { //Have to console.log() the value in this way due to asynchronous nature of the useState() hook
-        console.log(dataTexture)
-        console.log(textures.home[0])
-    }, [dataTexture])
+    // useEffect(()=> { //Have to console.log() the value in this way due to asynchronous nature of the useState() hook
+    //     console.log(dataTexture)
+    //     console.log(textures.home[0])
+    // }, [dataTexture])
 
     useEffect(() => {
       if (dataTexture) {
@@ -197,6 +201,7 @@ const BackgroundPlane = () => {
   
     return (
       <>
+        
           <mesh ref={planeRef} position={[0, 0, 0]}>
             <planeGeometry args={[viewport.width, viewport.height]} attach="geometry" />
             <BackgroundPlaneShaderMaterial ref={materialRef} texture={textures.home[0]} dataTexture={dataTexture} />

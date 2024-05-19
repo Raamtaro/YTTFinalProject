@@ -19,6 +19,12 @@ const BackgroundPlane = () => {
     // const [texture, setTexture] = useState(textures.home[0]);
     // const [nextTexture, setNextTexture] = useState(textures.home[1]); //This is set up to account for slide transitioning, which comes further down the line
 
+
+
+    useEffect(()=> {
+        console.log(textures['home'])
+    }, [])
+
     //Settings and References
     const mouse = useRef({x: 0, y: 0, prevX: 0, prevY: 0, vX: 0, vY: 0})
     const settings = useRef({

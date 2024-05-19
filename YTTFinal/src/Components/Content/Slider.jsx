@@ -6,14 +6,16 @@ import Poses from '../Sections/Poses.jsx'
 import Reflections from '../Sections/Reflections.jsx'
 import './ContentStyling/SliderRules.css'
 import SlideScroller from '../Sections/SlideScroller.jsx'
+import { useTextures } from '../../Contexts/TextureLoaderContext.jsx'
 
 
 
 
 //Overarching parent component which controls which slide(s) to load within each section
 
-const Slider = () => {
-  
+const Slider = () => {  
+
+  const {loading} = useTextures()
   const {activeSection} = useSection()
   const {bullets} = useSection()
   const sliderRef = useRef(null)
@@ -33,13 +35,17 @@ const Slider = () => {
   }
 
   return (
+          <>
+          {!loading &&         
+            <div className = "Slider" ref={sliderRef}>
+              <SlideScroller>
+                {renderSection()}
+              </SlideScroller>
+              <SlideNav bullets={bullets}/>
+            </div> 
+        }
+          </>
 
-        <div className = "Slider" ref={sliderRef}>
-          <SlideScroller>
-            {renderSection()}
-          </SlideScroller>
-          <SlideNav bullets={bullets}/>
-        </div> 
         
       
     

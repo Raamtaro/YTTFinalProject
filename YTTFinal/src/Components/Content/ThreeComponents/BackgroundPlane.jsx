@@ -3,30 +3,40 @@ import * as THREE from 'three'
 import {useState, useEffect, useRef} from 'react'
 import {useFrame, useThree} from '@react-three/fiber'
 import BackgroundPlaneShaderMaterial from './BackgroundPlaneMaterial.jsx'
-import { useTextures } from '../../../Contexts/TextureLoaderContext.jsx'
 import GUI from 'lil-gui'
 import clamp from '../../../utils/clamp.js'
 import { useSlide } from '../../../Contexts/SlideContext.jsx'
-import { useSection } from '../../../Contexts/SectionContext.jsx'
+
+// /****Imported for debugging****************************************** */
+// import { useTextures } from '../../../Contexts/TextureLoaderContext.jsx'
+// import { useSection } from '../../../Contexts/SectionContext.jsx'
+// /******************************************************************** */
 
 
 
 const BackgroundPlane = () => {
-    const {activeSection} = useSection()
+    // //**Imported for debugging */
+    // const {activeSection} = useSection() 
+    // const { textures, loading } = useTextures()
+    // //************************ */
+
     const { currentTexture, nextTexture, currentSlide } = useSlide()
     const { size, viewport } = useThree()
     const materialRef = useRef()
     const planeRef = useRef()
-    const { textures, loading } = useTextures()
     const [dataTexture, setDataTexture] = useState(null)
 
-    useEffect(()=> {
-        console.log(textures['home'][0])
-        console.log(currentSlide)
-        console.log(textures[activeSection.toLowerCase()][0]) //THIS IS RETURNING THE EXPECTED TEXTURE
-        console.log(textures[activeSection.toLowerCase()][currentSlide]) //THIS IS RETURNING THE EXPECTED TEXTURE
-        console.log(currentTexture) //THIS IS RETURNING NULL, WHICH IS UNEXPECTED BASED ON HOW IT IS SET IN SlideContext.jsx
-    }, [])
+
+    // useEffect(()=> { //Debug Logs
+    //     // console.log(textures['home'][0])
+    //     // console.log(currentSlide)
+    //     // console.log(textures[activeSection.toLowerCase()][0]) //THIS IS RETURNING THE EXPECTED TEXTURE
+    //     // console.log(textures[activeSection.toLowerCase()][currentSlide]) //THIS IS RETURNING THE EXPECTED TEXTURE
+    //     console.log(currentTexture)
+    //     console.log(currentSlide)
+    //     console.log(nextTexture)
+
+    // }, [currentTexture, nextTexture, currentSlide])
 
 
     //Settings and References
@@ -59,12 +69,6 @@ const BackgroundPlane = () => {
         const size = width * height
         const data = new Float32Array(4 * size)
 
-        const color = new THREE.Color(0xffffff);
-
-        // const r = Math.floor(color.r * 255);
-        // const g = Math.floor(color.g * 255);
-        // const b = Math.floor(color.b * 255);
-
         for (let i = 0; i < size ; i++) {
             let r = Math.random() * 255 - 125 
             let r1 = Math.random() * 255 - 125
@@ -80,10 +84,7 @@ const BackgroundPlane = () => {
         const texture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat, THREE.FloatType)
         texture.magFilter = THREE.NearestFilter;
         texture.minFilter = THREE.NearestFilter;
-        // texture.generateMipmaps = true;
         texture.needsUpdate = true
-
-        // console.log('Created DataTexture:', texture)
 
         setDataTexture(texture)
         if (materialRef) {
@@ -160,8 +161,6 @@ const BackgroundPlane = () => {
         return () => window.removeEventListener('mousemove', handleMouseMove)
     }, [])
 
-
-
     // useEffect(()=> { //Have to console.log() the value in this way due to asynchronous nature of the useState() hook
     //     console.log(dataTexture)
     //     console.log(textures.home[0])
@@ -185,10 +184,6 @@ const BackgroundPlane = () => {
       }
     }, [size, dataTexture]);
 
-
-
-
-
     useFrame(({ clock }) => {
       if (materialRef.current) {
         materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
@@ -196,15 +191,11 @@ const BackgroundPlane = () => {
       }
     });
 
-
-
-  
     return (
       <>
-        
           <mesh ref={planeRef} position={[0, 0, 0]}>
             <planeGeometry args={[viewport.width, viewport.height]} attach="geometry" />
-            <BackgroundPlaneShaderMaterial ref={materialRef} texture={textures.home[0]} dataTexture={dataTexture} />
+            <BackgroundPlaneShaderMaterial ref={materialRef} texture={currentTexture} nextTexture={nextTexture} dataTexture={dataTexture} />
           </mesh>
       </>
     );

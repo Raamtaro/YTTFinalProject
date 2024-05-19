@@ -19,13 +19,30 @@ export const SlideProvider = ( {children}) => {
     //If we change either the active Section, current Slide, or the textures themselves, then we'll have to re-render the page and set the appropriate Texture as well as the next
 
     useEffect(()=>{
-        if (!loading && activeSection && textures[activeSection]) {
+        // //Debug Logs
+        // console.log('useEffect triggered');
+        // console.log('Loading:', loading);
+        // console.log('Active Section:', activeSection);
+        // console.log('Textures:', textures);
+        //******  */
+        if (!loading && activeSection && textures[activeSection.toLowerCase()]) {
+            // //Debug log
+            // console.log("Initialising variables")
+            // //****** */
             const initialTexture = textures[activeSection.toLowerCase()][currentSlide] || null;
             const nextTexture = textures[activeSection.toLowerCase()][currentSlide + 1] || null;
+            // //Debug logs
+            // console.log("Variables Initialised")
+            // console.log('Initial Texture:', initialTexture);
+            // console.log('Next Texture:', nextTexture);
+            // //******  */
             setCurrentTexture(initialTexture);
             setNextTexture(nextTexture);
+
         }
-    },[activeSection, currentSlide, textures])
+    },[activeSection, currentSlide, textures, loading])
+
+
 
     //We need to travel to the next slide or the previous Slide
     const goToNextSlide = () => {

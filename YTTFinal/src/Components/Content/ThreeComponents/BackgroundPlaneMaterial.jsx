@@ -5,7 +5,7 @@ import helloVertex from './Shaders/vertex.glsl';
 import { extend } from '@react-three/fiber';
 
 const BackgroundPlaneShaderMaterial = forwardRef((props, ref) => {
-    const { texture, dataTexture} = props
+    const { texture, dataTexture, nextTexture} = props
 
     const shaderMaterial = useMemo(() => new THREE.ShaderMaterial({
         vertexShader: helloVertex,
@@ -15,9 +15,10 @@ const BackgroundPlaneShaderMaterial = forwardRef((props, ref) => {
             uResolution: { value: new THREE.Vector4() },
             uMouse: { value: new THREE.Vector2()},
             uTexture: {value: texture},
+            uNextTexture: {value: nextTexture},
             uDataTexture: {value: dataTexture}
         }
-    }), [texture, dataTexture]);
+    }), [texture, nextTexture, dataTexture]);
 
     return <primitive object={shaderMaterial} ref={ref} attach="material" {...props} />;
 });

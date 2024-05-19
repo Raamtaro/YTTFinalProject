@@ -140,6 +140,12 @@ const BackgroundPlane = () => {
     }, [])
 
     useEffect(()=>{
+        if (currentTexture) {
+            createDataTexture()
+        }
+    }, [currentTexture])
+
+    useEffect(()=>{
         const handleResize = () =>{
             createDataTexture()
         }
@@ -178,8 +184,8 @@ const BackgroundPlane = () => {
           a2 = (size.height / size.width) / imageAspect;
         }
         materialRef.current.uniforms.uResolution.value.set(size.width, size.height / 2, a1, a2);
-        // materialRef.current.uniforms.uDataTexture.value = dataTexture;
-        // materialRef.current.uniforms.uDataTexture.value.needsUpdate = true;
+        materialRef.current.uniforms.uDataTexture.value = dataTexture;
+        materialRef.current.uniforms.uDataTexture.value.needsUpdate = true;
         // console.log('Updated uniforms with DataTexture:', dataTexture);
       }
     }, [size, dataTexture]);

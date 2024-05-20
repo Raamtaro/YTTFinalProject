@@ -27,16 +27,16 @@ const BackgroundPlane = () => {
     const [dataTexture, setDataTexture] = useState(null)
 
 
-    // useEffect(()=> { //Debug Logs
-    //     // console.log(textures['home'][0])
-    //     // console.log(currentSlide)
-    //     // console.log(textures[activeSection.toLowerCase()][0]) //THIS IS RETURNING THE EXPECTED TEXTURE
-    //     // console.log(textures[activeSection.toLowerCase()][currentSlide]) //THIS IS RETURNING THE EXPECTED TEXTURE
-    //     console.log(currentTexture)
-    //     console.log(currentSlide)
-    //     console.log(nextTexture)
+    useEffect(()=> { //Debug Logs
+        // console.log(textures['home'][0])
+        // console.log(currentSlide)
+        // console.log(textures[activeSection.toLowerCase()][0]) //THIS IS RETURNING THE EXPECTED TEXTURE
+        // console.log(textures[activeSection.toLowerCase()][currentSlide]) //THIS IS RETURNING THE EXPECTED TEXTURE
+        console.log(currentTexture)
+        console.log(currentSlide)
+        // console.log(nextTexture)
 
-    // }, [currentTexture, nextTexture, currentSlide])
+    }, [currentTexture, nextTexture, currentSlide])
 
 
     //Settings and References

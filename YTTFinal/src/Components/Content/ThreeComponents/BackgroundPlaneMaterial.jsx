@@ -16,7 +16,8 @@ const BackgroundPlaneShaderMaterial = forwardRef((props, ref) => {
             uMouse: { value: new THREE.Vector2()},
             uTexture: {value: texture},
             uNextTexture: {value: nextTexture},
-            uDataTexture: {value: dataTexture}
+            uDataTexture: {value: dataTexture},
+            uMixFactor: {value: 0.0},
         }
     }), [texture, nextTexture, dataTexture]);
 

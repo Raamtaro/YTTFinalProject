@@ -17,6 +17,13 @@ export const SlideProvider = ( {children}) => {
 
 
     //If we change either the active Section, current Slide, or the textures themselves, then we'll have to re-render the page and set the appropriate Texture as well as the next
+    useEffect(()=>{
+        if (!loading && activeSection) {
+            setCurrentSlide(0)
+            console.log('Resetting currentSlide to 0');
+        }
+    }, [activeSection, loading])
+
 
     useEffect(()=>{
         // //Debug Logs
@@ -41,6 +48,8 @@ export const SlideProvider = ( {children}) => {
 
         }
     },[activeSection, currentSlide, textures, loading])
+
+
 
 
 

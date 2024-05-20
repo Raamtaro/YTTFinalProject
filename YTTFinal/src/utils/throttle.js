@@ -1,6 +1,6 @@
 const throttle = (func, limit) => {
     let inThrottle;
-    return () => {
+    return function() {
         const args = arguments;
         const context = this;
         if (!inThrottle) {

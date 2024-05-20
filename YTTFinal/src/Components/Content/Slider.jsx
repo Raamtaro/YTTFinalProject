@@ -7,6 +7,7 @@ import Reflections from '../Sections/Reflections.jsx'
 import './ContentStyling/SliderRules.css'
 import SlideScroller from '../Sections/SlideScroller.jsx'
 import { useTextures } from '../../Contexts/TextureLoaderContext.jsx'
+import SlideNavButtons from '../Navigation/SlideNavButtons.jsx'
 
 //Overarching parent component which controls which slide(s) to load within each section
 
@@ -39,6 +40,7 @@ const Slider = () => {
                 {renderSection()}
               </SlideScroller>
               <SlideNav bullets={bullets}/>
+              <SlideNavButtons />
             </div> 
         }
           </>

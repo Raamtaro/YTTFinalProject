@@ -50,3 +50,32 @@
 .slider__text-line {
     overflow: hidden;
 }
+
+.nav-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10; /* Ensure buttons are above other content */
+  }
+
+.prev-button {
+    left: 10px;
+  }
+  
+.next-button {
+    right: 10px;
+  }
+  
+.nav-button:focus {
+    outline: none;
+  }
+  
+.nav-button:hover {
+    color: #ddd;
+  }

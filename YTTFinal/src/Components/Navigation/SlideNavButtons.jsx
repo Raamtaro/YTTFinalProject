@@ -8,8 +8,8 @@ const SlideNavButtons = () => {
 
   return (
     <>
-        {currentSlide > 0 && (<button className="nav-button prev-button" onClick={goToPrevSlide}>&lt;</button>)}
-        {currentSlide < bullets - 1  && (<button className="nav-button next-button" onClick={goToNextSlide}>&gt;</button>)}
+        {currentSlide > 0 && (<button className="nav-button prev-button" onClick={goToPrevSlide}>Prev</button>)}
+        {currentSlide < bullets - 1  && (<button className="nav-button next-button" onClick={goToNextSlide}>Next</button>)}
     </>
   )
 }

@@ -15,4 +15,46 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
+
+.slide__content {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slide__img {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide__img img {
+    width: 100%;
+    height: auto;
+}
+
+.slider__text {
+    bottom: calc(2rem + 3vw);
+    left: calc(2rem + 3vw);
+    z-index: 10;
+    font-size: calc(1rem + 4vw);
+    text-transform: uppercase;
+    transform-origin: top;
+    line-height: 1.075;
+    color: #fff;
+    font-weight: 500;
+}
+
+.slider__text-line {
+    overflow: hidden;
+}
+  

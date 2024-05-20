@@ -8,9 +8,6 @@ import './ContentStyling/SliderRules.css'
 import SlideScroller from '../Sections/SlideScroller.jsx'
 import { useTextures } from '../../Contexts/TextureLoaderContext.jsx'
 
-
-
-
 //Overarching parent component which controls which slide(s) to load within each section
 
 const Slider = () => {  
@@ -45,11 +42,6 @@ const Slider = () => {
             </div> 
         }
           </>
-
-        
-      
-    
-
   )
 }
 

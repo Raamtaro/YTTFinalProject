@@ -8,6 +8,9 @@ import './ContentStyling/SliderRules.css'
 import SlideScroller from '../Sections/SlideScroller.jsx'
 import { useTextures } from '../../Contexts/TextureLoaderContext.jsx'
 import SlideNavButtons from '../Navigation/SlideNavButtons.jsx'
+import { useDrag } from '@use-gesture/react'
+import gsap from 'gsap'
+import { useSlide } from '../../Contexts/SlideContext.jsx'
 
 //Overarching parent component which controls which slide(s) to load within each section
 
@@ -17,6 +20,7 @@ const Slider = () => {
   const {activeSection} = useSection()
   const {bullets} = useSection()
   const sliderRef = useRef(null)
+  const {currentSlide, goToNextSlide, goToPrevSlide} = useSlide()
   
 
   const renderSection = () => {
@@ -32,15 +36,81 @@ const Slider = () => {
     }
   }
 
+  const handleNextSlide = () => {
+    gsap.to(".slide__img img, .slider__text", {
+      opacity: 0,
+      duration: 0.75,
+      onComplete: ()=> {
+        goToNextSlide();
+        gsap.to(
+          ".slide__img img, .slider__text", 
+          {
+            opacity: 1,
+            duration: 5.00,
+            ease: "expoScale(0.5,7,none)"
+          }
+        )
+      }
+    })
+  }
+
+  const handlePrevSlide = () => {
+    gsap.to(".slide__img img, .slider__text", {
+      opacity: 0,
+      duration: 0.75,
+      onComplete: ()=> {
+        goToPrevSlide();
+        gsap.to(
+          ".slide__img img, .slider__text", 
+          {
+            opacity: 1,
+            duration: 5.00,
+            ease: "expoScale(0.5,7,none)"
+          }
+        )
+      }
+    })
+  }
+
+  const bind = useDrag(({ down, movement: [mx] }) => {
+    if (!down) {
+      if (mx < -50 && currentSlide < bullets - 1) {
+        handleNextSlide();
+      } else if (mx > 50 && currentSlide > 0) {
+        handlePrevSlide();
+      }
+    }
+  });
+
+  // useEffect(() => {
+  //   const handleWheel = (event) => {
+  //     if (event.deltaX < -50 && currentSlide < bullets - 1) {
+  //       handleNextSlide();
+  //     } else if (event.deltaX > 50 && currentSlide > 0) {
+  //       handlePrevSlide();
+  //     }
+  //   };
+
+  //   const container = sliderRef.current;
+  //   container.addEventListener('wheel', handleWheel);
+
+  //   return () => {
+  //     container.removeEventListener('wheel', handleWheel);
+  //   };
+  // }, [currentSlide, bullets]);
+
   return (
           <>
           {!loading &&         
-            <div className = "Slider" ref={sliderRef}>
+            <div className = "Slider" ref={sliderRef} {...bind()} style={{touchAction: 'none'}}>
               <SlideScroller>
                 {renderSection()}
               </SlideScroller>
               <SlideNav bullets={bullets}/>
-              <SlideNavButtons />
+              <SlideNavButtons 
+              handlePrevSlide={handlePrevSlide}
+              handleNextSlide={handleNextSlide}
+              />
             </div> 
         }
           </>

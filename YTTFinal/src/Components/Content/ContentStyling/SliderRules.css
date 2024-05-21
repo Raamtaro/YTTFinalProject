@@ -29,9 +29,14 @@
 }
 
 .slider-bullet__line {
-    background-color: #fff;
-    height: 1px;
-    width: 1rem;
+  background-color: transparent; /* Default to transparent */
+  height: 1px;
+  width: 1rem;
+  transition: background-color 5.0s;
+}
+
+.slider-bullet__line.active {
+  background-color: #fff; /* Active line color */
 }
 
 .nav-button {

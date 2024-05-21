@@ -194,8 +194,8 @@ const BackgroundPlane = () => {
             break;
           case 'Reflections':
             settings.current = {
-              grid: 70,
-              mouse: 0.25,
+              grid: 1000,
+              mouse: 0.11,
               strength: 0.05,
               relaxation: 0.99,
             };

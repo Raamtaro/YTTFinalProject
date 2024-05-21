@@ -27,21 +27,21 @@ export const SlideProvider = ( {children}) => {
 
     useEffect(()=>{
         // //Debug Logs
-        // console.log('useEffect triggered');
-        // console.log('Loading:', loading);
-        // console.log('Active Section:', activeSection);
-        // console.log('Textures:', textures);
-        //******  */
+        console.log('useEffect triggered');
+        console.log('Loading:', loading);
+        console.log('Active Section:', activeSection);
+        console.log('Textures:', textures);
+        // ******  */
         if (!loading && activeSection && textures[activeSection.toLowerCase()]) {
             // //Debug log
-            // console.log("Initialising variables")
+            console.log("Initialising variables")
             // //****** */
             const initialTexture = textures[activeSection.toLowerCase()][currentSlide] || null;
             const nextTexture = textures[activeSection.toLowerCase()][currentSlide + 1] || null;
             // //Debug logs
-            // console.log("Variables Initialised")
-            // console.log('Initial Texture:', initialTexture);
-            // console.log('Next Texture:', nextTexture);
+            console.log("Variables Initialised")
+            console.log('Initial Texture:', initialTexture);
+            console.log('Next Texture:', nextTexture);
             // //******  */
             setCurrentTexture(initialTexture);
             setNextTexture(nextTexture);

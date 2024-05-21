@@ -52,6 +52,7 @@ const BackgroundPlane = () => {
     //GUI/Tweaks
     useEffect(()=>{
         const gui = new GUI();
+        gui.domElement.classList.add('custom-gui');
         gui.add(settings.current, 'grid', 2, 1000, 1).onFinishChange(()=> {
             createDataTexture()
         }) //come back to add .onFinishChange(()=>{}) callback to createDataTexture()

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSlide } from '../../Contexts/SlideContext'
 import { useSection } from '../../Contexts/SectionContext'
 import gsap from 'gsap'
+import { useDrag } from '@use-gesture/react'
 
 const SlideNavButtons = () => {
     const {currentSlide, goToNextSlide, goToPrevSlide} = useSlide()
@@ -42,6 +43,16 @@ const SlideNavButtons = () => {
         }
       })
     }
+    
+    const bind = useDrag(({ down, movement: [mx] }) => {
+      if (!down) {
+        if (mx < -50 && currentSlide < bullets - 1) {
+          handleNextSlide();
+        } else if (mx > 50 && currentSlide > 0) {
+          handlePrevSlide();
+        }
+      }
+    });
 
     return (
       <>

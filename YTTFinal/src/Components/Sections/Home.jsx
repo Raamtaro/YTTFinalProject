@@ -6,7 +6,7 @@ import { useSlide } from '../../Contexts/SlideContext.jsx';
 const Home = () => {
   const {currentSlide } = useSlide()
   const slidesData = [
-    { text1: "Slide 1", text2: "Whoa" },
+    { text1: "Hey! I'm Raam", text2: "Let's talk about Gatekeeper Poses in Ashtanga" },
     { text1: "Slide 2", text2: "Bro" },
     { text1: "Slide 3", text2: "Slow" },
 

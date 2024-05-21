@@ -9,14 +9,14 @@ import { useSlide } from '../../../Contexts/SlideContext.jsx'
 
 // /****Imported for debugging****************************************** */
 // import { useTextures } from '../../../Contexts/TextureLoaderContext.jsx'
-// import { useSection } from '../../../Contexts/SectionContext.jsx'
+import { useSection } from '../../../Contexts/SectionContext.jsx'
 // /******************************************************************** */
 
 
 
 const BackgroundPlane = () => {
     // //**Imported for debugging */
-    // const {activeSection} = useSection() 
+    const {activeSection} = useSection() 
     // const { textures, loading } = useTextures()
     // //************************ */
 
@@ -145,6 +145,8 @@ const BackgroundPlane = () => {
         }
     }, [currentTexture])
 
+    
+
     useEffect(()=>{
         const handleResize = () =>{
             createDataTexture()
@@ -171,6 +173,38 @@ const BackgroundPlane = () => {
     //     console.log(dataTexture)
     //     console.log(textures.home[0])
     // }, [dataTexture])
+
+    useEffect(() => {
+        switch (activeSection) {
+          case 'Home':
+            settings.current = {
+              grid: 31,
+              mouse: 0.41,
+              strength: 0.01,
+              relaxation: 0.98,
+            };
+            break;
+          case 'Poses':
+            settings.current = {
+              grid: 512,
+              mouse: 0.5,
+              strength: 0.02,
+              relaxation: 0.95,
+            };
+            break;
+          case 'Reflections':
+            settings.current = {
+              grid: 70,
+              mouse: 0.25,
+              strength: 0.05,
+              relaxation: 0.99,
+            };
+            break;
+          default:
+            break;
+        }
+        createDataTexture();
+      }, [activeSection]);
 
     useEffect(() => {
       if (dataTexture) {
